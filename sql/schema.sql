@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS hotels (
     location TEXT,
     rating REAL,
     ratingCount INTEGER,
-    accessibility INTEGER CHECK (accessibility IN (0,1))
+    accessibility INTEGER CHECK (accessibility IN (0,1)),
     pets INTEGER CHECK (pets IN (0,1)),
     refundable INTEGER CHECK (refundable IN (0,1)),
     photoURL TEXT,

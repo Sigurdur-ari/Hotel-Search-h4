@@ -9,11 +9,11 @@ INSERT INTO hotels (name, location, rating, ratingCount,
 
 
 INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
-            VALUES('Test1', 2024-12-10, 1, 4, 12000);
+            VALUES('Test1', "2024-12-10", 1, 4, 12000);
 INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
-            VALUES('Test1', 2024-12-11, 2, 2, 8000);
+            VALUES('Test1', "2024-12-11", 2, 2, 8000);
 INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
-            VALUES('Test2', 2024-12-10, 1, 4, 12000);
+            VALUES('Test2', "2024-12-10", 1, 4, 12000);
 INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
-            VALUES('Test2', 2024-12-11, 2, 3, 7000);
+            VALUES('Test2', "2024-12-11", 2, 3, 7000);
 
