@@ -3,6 +3,7 @@ package software;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
@@ -12,21 +13,39 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         Database db = new Database();
-
+        //bara leið til að sjá það sem er geymt í rooms
         try {
-            ResultSet rs = db.query("SELECT * FROM hotels");
+            ResultSet rs1 = db.query("SELECT * FROM hotels");
             primaryStage.setTitle("Hotel Search engine");
-            StringBuilder testString = new StringBuilder();
-            while (rs.next()) {
-                testString.append(rs.getString("name"));
+            VBox hotelBox = new VBox();
+            while (rs1.next()) {
+                String hotel = rs1.getString("name");
+                VBox roomBox = new VBox();
+                String query = String.format("SELECT * FROM hotelRooms WHERE hotelName = '%s'", hotel);
+                ResultSet rs2 = db.query(query);
+                while (rs2.next()) {
+                    String hotelName = rs2.getString("hotelName");
+                    String date = rs2.getString("date");
+                    int roomNum = rs2.getInt("roomNum");
+                    int capacity = rs2.getInt("capacity");
+                    int pricePerNight = rs2.getInt("pricePerNight");
+
+                    String labelText = String.format("Hotel: %s, Date: %s, Room Number: %d, Capacity: %d, Price: %d",
+                            hotelName, date, roomNum, capacity, pricePerNight);
+
+                    Label label = new Label(labelText);
+                    roomBox.getChildren().add(label);
+                }
+                hotelBox.getChildren().add(roomBox);
+                db.closeRS(rs2);
             }
-            Label testingLabel = new Label(testString.toString());
-            Scene scene = new Scene(testingLabel, 800, 600);
+            db.closeRS(rs1);
+            Scene scene = new Scene(hotelBox, 800, 600);
             primaryStage.setScene(scene);
             primaryStage.show();
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             db.close();
         }
