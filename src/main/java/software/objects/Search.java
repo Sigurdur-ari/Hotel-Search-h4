@@ -1,5 +1,7 @@
 package software.objects;
 
+import java.util.ArrayList;
+
 public class Search {
     private String location;
     private String checkInDate;
@@ -12,18 +14,50 @@ public class Search {
     private boolean accessibility;
     private boolean pets;
     private boolean refundable;
+    private final ArrayList<Hotel> hotels;
 
-    public void initialSearch(String location, String checkInDate, String checkOutDate, int partySize) {
-        //probably should return something to confirm it worked?
+    public Search(ArrayList<Hotel> hotels) {
+        this.location = null;
+        this.checkInDate = null;
+        this.checkOutDate = null;
+        this.partySize = 0;
+        this.minRating = 0.0f;
+        this.maxRating = Float.POSITIVE_INFINITY;
+        this.minPrice = 0;
+        this.maxPrice = Integer.MAX_VALUE;
+        this.accessibility = false;
+        this.pets = false;
+        this.refundable = false;
+        this.hotels = hotels;
+    }
+
+    public ArrayList<Hotel> initialSearch(String location, String checkInDate, String checkOutDate, int partySize) {
         this.location = location;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.partySize = partySize;
-        //TODO: actual initial search maybe this class needs a list of all hotels?
+
+        ArrayList<Hotel> validHotels = new ArrayList<Hotel>();
+
+        for (Hotel hotel : hotels) {
+            if (hotel.isAvailable(this)) {
+                validHotels.add(hotel);
+            }
+        }
+
+        return validHotels;
     }
 
-    public void searchAgain() {
-        //TODO
+    public ArrayList<Hotel> searchAgain() {
+        ArrayList<Hotel> validHotels = new ArrayList<Hotel>();
+
+        for (Hotel hotel : hotels) {
+            if (hotel.isAvailable(this)) {
+                validHotels.add(hotel);
+            }
+        }
+
+        return validHotels;
     }
 
     public void updateRating(int minRating, int maxRating) {
@@ -80,7 +114,7 @@ public class Search {
         return maxPrice;
     }
 
-    public boolean isAccessibility() {  // "is" instead of "get" for boolean
+    public boolean isAccessibility() {
         return accessibility;
     }
 

@@ -1,5 +1,8 @@
 package software.objects;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class HotelRoom {
     private final String hotelName;
     private final String dateAvailable;
@@ -15,6 +18,23 @@ public class HotelRoom {
         this.capacity = capacity;
         this.pricePerNight = pricePerNight;
         this.refundable = refundable;
+    }
+
+    public boolean isAvailable(Search query) {
+        boolean date = dateAvailable.equals(query.getCheckInDate());
+        boolean size = capacity <= query.getPartySize();
+
+        LocalDate date1 = LocalDate.parse(dateAvailable);
+        LocalDate date2 = LocalDate.parse(query.getCheckOutDate());
+        long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+
+        boolean minPrice = query.getMinPrice() <= pricePerNight * daysBetween;
+        boolean maxPrice = pricePerNight * daysBetween <= query.getMaxPrice();
+        return date && size && minPrice && maxPrice;
+    }
+
+    public void bookRoom(Search Query) {
+        //TODO
     }
 
     public String getHotelName() {
@@ -39,14 +59,5 @@ public class HotelRoom {
 
     public boolean isRefundable() {
         return refundable;
-    }
-
-    public boolean isAvailable(Search query) {
-        //TODO
-        return true;
-    }
-
-    public void bookRoom(Search Query) {
-        //TODO: will become public Booking bookRoom()
     }
 }

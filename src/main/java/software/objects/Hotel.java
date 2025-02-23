@@ -29,6 +29,24 @@ public class Hotel {
         this.rooms = rooms;
     }
 
+    public boolean isAvailable(Search query) {
+        boolean place = location.equals(query.getLocation());
+        boolean minRating = query.getMinRating() <= rating;
+        boolean maxRating = rating <= query.getMaxRating();
+        boolean petsAllowed = !query.isPets() || pets;
+        boolean accessible = !query.isAccessibility() || accessibility;
+        boolean refunds = !query.isRefundable() || refundable;
+
+        if (place && minRating && maxRating && petsAllowed && accessible && refunds) {
+            for (HotelRoom room : rooms) {
+                if (room.isAvailable(query)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public String getName() {
         return name;
     }
@@ -71,10 +89,5 @@ public class Hotel {
 
     public ArrayList<HotelRoom> getRooms() {
         return new ArrayList<>(rooms);
-    }
-
-    public boolean isAvailable(Search query) {
-        //TODO
-        return true;
     }
 }

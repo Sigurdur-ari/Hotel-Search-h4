@@ -5,14 +5,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import software.objects.Hotel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         Database db = new Database();
+        ArrayList<Hotel> allHotels = db.makeHotels();
         //bara leið til að sjá það sem er geymt í rooms
         try {
             ResultSet rs1 = db.query("SELECT * FROM hotels");
