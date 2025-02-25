@@ -1,10 +1,14 @@
 package software;
 
+import software.objects.Hotel;
+import software.objects.HotelRoom;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -17,6 +21,44 @@ public class Database {
 
     public Database() {
         initializeDatabase();
+    }
+
+    public ArrayList<Hotel> makeHotels() {
+        ResultSet rs1 = query("SELECT * FROM hotels");
+        ArrayList<Hotel> allHotels = new ArrayList<Hotel>();
+        try {
+            while (rs1.next()) {
+                String hotelName = rs1.getString("name");
+                String location = rs1.getString("location");
+                float rating = rs1.getFloat("rating");
+                int ratingCount = rs1.getInt("ratingCount");
+                boolean refundable = rs1.getInt("refundable") == 1;
+                boolean pets = rs1.getInt("pets") == 1;
+                boolean accessibility = rs1.getInt("accessibility") == 1;
+                String photoURL = rs1.getString("photoURL");
+                String checkInTime = rs1.getString("checkInTime");
+                String checkOutTime = rs1.getString("checkOutTime");
+                ArrayList<HotelRoom> hotelsRooms = new ArrayList<HotelRoom>();
+
+                ResultSet rs2 =query("SELECT * FROM hotelRooms WHERE hotelName = '" + hotelName + "'");
+                while (rs2.next()) {
+                    String dateAvailable = rs2.getString("date");
+                    int roomNumber = rs2.getInt("roomNum");
+                    int capacity = rs2.getInt("capacity");
+                    int pricePerNight = rs2.getInt("pricePerNight");
+                    hotelsRooms.add(new HotelRoom(hotelName, dateAvailable, roomNumber, capacity, pricePerNight, refundable));
+                }
+                closeRS(rs2);
+
+                allHotels.add(new Hotel(hotelName, location, rating, ratingCount, accessibility, pets, refundable, checkInTime, checkOutTime, photoURL, hotelsRooms));
+            }
+            closeRS(rs1);
+            return allHotels;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void initializeDatabase() {
