@@ -23,6 +23,14 @@ public class Database {
         initializeDatabase();
     }
 
+    /**
+     * A function that returns the hotel arraylist
+     * @return list of all hotels in the database
+     */
+    public ArrayList<Hotel> getHotels(){
+        return makeHotels();
+    }
+
     public ArrayList<Hotel> makeHotels() {
         ResultSet rs1 = query("SELECT * FROM hotels");
         ArrayList<Hotel> allHotels = new ArrayList<Hotel>();

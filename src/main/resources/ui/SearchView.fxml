@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.SearchController">
+   <children>
+      <VBox layoutX="1.0" layoutY="-4.0" prefHeight="600.0" prefWidth="843.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="900.0" text="Hotel search page" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="200.0" text="Location:" />
+                        <TextField prefHeight="40.0" prefWidth="200.0" fx:id="locationField"/>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="200.0" text="Check in date:" />
+                        <TextField prefHeight="40.0" prefWidth="200.0" promptText="yyyy-mm-dd" fx:id="checkInDateField" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="200.0" text="check out date:" />
+                        <TextField prefHeight="40.0" prefWidth="200.0" promptText="yyyy-mm-dd" fx:id="checkOutDateField"/>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="75.0" text="Number of people:" wrapText="true" />
+                        <ComboBox prefHeight="40.0" prefWidth="75.0" visibleRowCount="8" fx:id="guestSelector">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <Integer fx:value="1" />
+                                 <Integer fx:value="2" />
+                                 <Integer fx:value="3" />
+                                 <Integer fx:value="4" />
+                                 <Integer fx:value="5" />
+                                 <Integer fx:value="6" />
+                                 <Integer fx:value="7" />
+                                 <Integer fx:value="8" />
+                             </FXCollections>
+                         </items>
+                        </ComboBox>
+
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Search" onAction="#handleSearch" fx:id="searchButton">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
