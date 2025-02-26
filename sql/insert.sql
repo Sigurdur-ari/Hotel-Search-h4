@@ -1,11 +1,11 @@
 --Mock test insert data
 INSERT INTO hotels (name, location, rating, ratingCount,
                     accessibility, pets, refundable, photoURL, checkInTime, checkOutTime)
-            VALUES ('Test1', 'Reykjavík', 8.9, 1000, TRUE, FALSE, FALSE, 'photo1.is', '16:30', '10:00');
+            VALUES ('Test1', 'Reykjavík', 8.9, 1000, TRUE, FALSE, FALSE, './src/main/resources/photos/hotel1.jpg', '16:30', '10:00');
 
 INSERT INTO hotels (name, location, rating, ratingCount,
                     accessibility, pets, refundable, photoURL, checkInTime, checkOutTime)
-            VALUES ('Test2', 'Akureyri', 7.5, 200, TRUE, TRUE, FALSE, 'photo2.is', '15:30', '11:00');
+            VALUES ('Test2', 'Akureyri', 7.5, 200, TRUE, TRUE, FALSE, './src/main/resources/photos/hotel2.jpg', '15:30', '11:00');
 
 
 --INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)

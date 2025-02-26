@@ -90,4 +90,18 @@ public class Hotel {
     public ArrayList<HotelRoom> getRooms() {
         return new ArrayList<>(rooms);
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{name='" + name + "', " +
+                "location=" + location + "', " +
+                "rating= " + rating + "', " +
+                "ratingCount= " + ratingCount + "', " +
+                "accessibility= " + accessibility + "', " +
+                "pets=" + pets + "', " +
+                "refundable=" + refundable + "', " +
+                "checkInTime=" + checkInTime + "', " +
+                "checkOutTime=" + checkOutTime + "', " +
+                "photoURL=" + photoURL + "',}";
+    }
 }
