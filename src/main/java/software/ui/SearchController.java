@@ -1,7 +1,6 @@
 package software.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import software.Database;
@@ -16,7 +15,6 @@ public class SearchController {
     @FXML private TextField checkInDateField;
     @FXML private TextField checkOutDateField;
     @FXML private ComboBox<Integer> guestSelector;
-    @FXML private Button searchButton;
 
     @FXML
     private void handleSearch() {
@@ -30,7 +28,7 @@ public class SearchController {
             Search search = new Search(db.getHotels());
             ArrayList<Hotel> availableHotels = search.initialSearch(location, checkInDate, checkOutDate, guests);
 
-            System.out.println(availableHotels.get(0).getName());
+            System.out.println(availableHotels);
 
             System.out.println("Initial search called with values: "
                     + location + " "

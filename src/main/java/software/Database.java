@@ -127,11 +127,12 @@ public class Database {
 
                     int roomNumber = random.nextInt(900) + 100;
                     String pair = date + " & " + roomNumber;
-                    System.out.println(pair);
+                    System.out.println(pair); // Log the date and room number
 
                     if (!uniqueRooms.contains(pair)) {
                         uniqueRooms.add(pair);
-                        int capacity = random.nextInt(12) + 1;
+                        int capacity = random.nextInt(7) + 1;
+                        System.out.println(capacity); //log the capacity
                         int price = (random.nextInt(20) + 1) * 1000;
 
                         String insertQuery = "INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight) VALUES (?, ?, ?, ?, ?)";
