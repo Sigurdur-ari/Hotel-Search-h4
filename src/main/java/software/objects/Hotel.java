@@ -33,8 +33,8 @@ public class Hotel {
         boolean place = location.equals(query.getLocation());
         boolean minRating = query.getMinRating() <= rating;
         boolean maxRating = rating <= query.getMaxRating();
-        boolean petsAllowed = !query.isPets() || pets;
-        boolean accessible = !query.isAccessibility() || accessibility;
+        boolean petsAllowed = !query.petsAllowed() || pets;
+        boolean accessible = !query.isAccessible() || accessibility;
         boolean refunds = !query.isRefundable() || refundable;
 
         if (place && minRating && maxRating && petsAllowed && accessible && refunds) {
@@ -63,7 +63,7 @@ public class Hotel {
         return ratingCount;
     }
 
-    public boolean isAccessibility() {
+    public boolean isAccessible() {
         return accessibility;
     }
 

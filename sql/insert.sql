@@ -1,17 +1,33 @@
 --Mock test insert data
 INSERT INTO hotels (name, location, rating, ratingCount,
                     accessibility, pets, refundable, photoURL, checkInTime, checkOutTime)
-            VALUES ('Test1', 'Reykjavík', 8.9, 1000, TRUE, FALSE, FALSE, './src/main/resources/photos/hotel1.jpg', '16:30', '10:00');
+            VALUES ('Grand Rey', 'Reykjavík', 8.9, 1000, TRUE, FALSE, FALSE, 'photos/hotel1.jpg', '16:30', '10:00'),
+            ('Grand Ak', 'Akureyri', 7.5, 200, TRUE, TRUE, FALSE, 'photos/hotel2.jpg', '15:30', '11:00'),
+            ('Grand Ís', 'Ísafjörður', 7.5, 200, TRUE, TRUE, FALSE, 'photos/hotel2.jpg', '15:30', '11:00'),
+            ('Hilton Ís', 'Ísafjörður', 6, 4000, TRUE, TRUE, FALSE, 'photos/hotel1.jpg', '15:00', '11:00'),
+            ('Spara Ís', 'Ísafjörður', 9.7, 20000, TRUE, TRUE, TRUE, 'photos/default.jpg', '14:00', '11:00');
 
-INSERT INTO hotels (name, location, rating, ratingCount,
-                    accessibility, pets, refundable, photoURL, checkInTime, checkOutTime)
-            VALUES ('Test2', 'Akureyri', 7.5, 200, TRUE, TRUE, FALSE, './src/main/resources/photos/hotel2.jpg', '15:30', '11:00');
 
+INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
+          VALUES('Grand Rey', "2025-03-20", 1, 2, 12000),
+          ('Grand Rey', "2025-03-20", 2, 2, 1200),
+          ('Grand Rey', "2025-03-20", 3, 2, 18000),
+          ('Grand Ak', "2025-03-20", 1, 2, 1110),
+          ('Grand Ak', "2025-03-20", 2, 2, 121200),
+          ('Grand Ak', "2025-03-20", 3, 2, 132100),
+          ('Grand Ís', "2025-03-20", 1, 2, 31200),
+          ('Grand Ís', "2025-03-20", 2, 2, 43124),
+          ('Grand Ís', "2025-03-20", 3, 2, 5342),
+          ('Grand Ís', "2025-03-20", 4, 2, 543),
+          ('Hilton Ís', "2025-03-20", 1, 2, 31200),
+          ('Hilton Ís', "2025-03-20", 2, 2, 43124),
+          ('Hilton Ís', "2025-03-20", 3, 2, 5342),
+          ('Hilton Ís', "2025-03-20", 4, 2, 543),
+          ('Spara Ís', "2025-03-20", 1, 2, 31200),
+          ('Spara Ís', "2025-03-20", 2, 2, 43124),
+          ('Spara Ís', "2025-03-20", 3, 2, 5342),
+          ('Spara Ís', "2025-03-20", 4, 2, 543);
 
---INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
---           VALUES('Test1', "2024-12-10", 1, 4, 12000);
---INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
---            VALUES('Test1', "2024-12-11", 2, 2, 8000);
 --INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
 --            VALUES('Test2', "2024-12-10", 1, 4, 12000);
 --INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
