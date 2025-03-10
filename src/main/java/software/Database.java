@@ -75,7 +75,7 @@ public class Database {
                 connection = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
                 executeSQLFile(SCHEMA_FILE);
                 executeSQLFile(INSERT_FILE);
-                makeRooms(10);
+                //makeRooms(10);
             }
             else {
                 connection = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);

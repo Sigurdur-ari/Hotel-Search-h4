@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ui.HotelView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.HotelViewController">
+   <children>
+      <VBox layoutX="-2.0" layoutY="3.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label alignment="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="1000.0" text="Available Hotels">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="800.0" prefWidth="1000.0">
+               <children>
+                  <VBox fx:id="filterBox" minWidth="150.0" prefHeight="730.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Pets Allowed" />
+                        <CheckBox mnemonicParsing="false" text="Accessible" />
+                        <CheckBox mnemonicParsing="false" text="Refundable" />
+                        <HBox alignment="CENTER" spacing="50.0">
+                           <children>
+                              <Label fx:id="minPriceLab" />
+                              <Label fx:id="maxPriceLab" />
+                           </children></HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <ListView fx:id="hotelListView" prefHeight="800.0" prefWidth="1000.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import java.lang.Integer?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import java.lang.*?>
+
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.SearchController">
    <children>
       <VBox layoutX="1.0" layoutY="-4.0" prefHeight="600.0" prefWidth="843.0">
@@ -21,25 +27,25 @@
                   <VBox>
                      <children>
                         <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="200.0" text="Location:" />
-                        <TextField prefHeight="40.0" prefWidth="200.0" fx:id="locationField"/>
+                        <TextField fx:id="locationField" prefHeight="40.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                   <VBox>
                      <children>
                         <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="200.0" text="Check in date:" />
-                        <TextField prefHeight="40.0" prefWidth="200.0" promptText="yyyy-mm-dd" fx:id="checkInDateField" />
+                        <DatePicker fx:id="checkInDateField" prefHeight="40.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                   <VBox>
                      <children>
                         <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="200.0" text="check out date:" />
-                        <TextField prefHeight="40.0" prefWidth="200.0" promptText="yyyy-mm-dd" fx:id="checkOutDateField"/>
+                        <DatePicker fx:id="checkOutDateField" prefHeight="40.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                   <VBox>
                      <children>
                         <Label alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="75.0" text="Number of people:" wrapText="true" />
-                        <ComboBox prefHeight="40.0" prefWidth="75.0" visibleRowCount="8" fx:id="guestSelector">
+                        <ComboBox fx:id="guestSelector" prefHeight="40.0" prefWidth="75.0" visibleRowCount="8">
                          <items>
                              <FXCollections fx:factory="observableArrayList">
                                  <Integer fx:value="1" />
@@ -63,7 +69,7 @@
             </HBox>
             <HBox alignment="BOTTOM_RIGHT">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Search" onAction="#handleSearch" fx:id="searchButton">
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="40.0" prefWidth="100.0" text="Search">
                      <HBox.margin>
                         <Insets right="50.0" />
                      </HBox.margin>

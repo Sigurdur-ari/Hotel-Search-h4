@@ -37,7 +37,7 @@ public class Search {
         this.checkOutDate = checkOutDate;
         this.partySize = partySize;
 
-        ArrayList<Hotel> validHotels = new ArrayList<Hotel>();
+        ArrayList<Hotel> validHotels = new ArrayList<>();
 
         for (Hotel hotel : hotels) {
             if (hotel.isAvailable(this)) {
@@ -49,7 +49,7 @@ public class Search {
     }
 
     public ArrayList<Hotel> searchAgain() {
-        ArrayList<Hotel> validHotels = new ArrayList<Hotel>();
+        ArrayList<Hotel> validHotels = new ArrayList<>();
 
         for (Hotel hotel : hotels) {
             if (hotel.isAvailable(this)) {
@@ -114,11 +114,11 @@ public class Search {
         return maxPrice;
     }
 
-    public boolean isAccessibility() {
+    public boolean isAccessible() {
         return accessibility;
     }
 
-    public boolean isPets() {
+    public boolean petsAllowed() {
         return pets;
     }
 

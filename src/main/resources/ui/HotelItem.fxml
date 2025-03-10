@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.HotelItemController">
+    <ImageView fx:id="hotelImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true"/>
+    <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+        <Label fx:id="hotelName" text="Hotel Name" wrapText="true">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <HBox spacing="5.0">
+            <Label text="Check-in:" />
+            <Label fx:id="checkInTime" text="????" />
+        </HBox>
+        <HBox spacing="5.0">
+            <Label text="Check-out:" />
+            <Label fx:id="checkOutTime" text="????" />
+        </HBox>
+    </VBox>
+    <VBox alignment="CENTER" minWidth="100.0" spacing="5.0">
+        <Label fx:id="hotelRating" text="????">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="ratingCount" text="????" />
+    </VBox>
+    <VBox minWidth="120.0" spacing="8.0">
+        <Label fx:id="accessible" text="♿ Accessible" />
+        <Label fx:id="petsAllowed" text="🐶 Pets Allowed" />
+        <Label fx:id="refundable" text="💰 Refundable" />
+    </VBox>
+</HBox>
