@@ -1,5 +1,6 @@
 package software;
 
+import software.objects.Booking;
 import software.objects.Hotel;
 import software.objects.HotelRoom;
 
@@ -48,13 +49,16 @@ public class Database {
                 String checkOutTime = rs1.getString("checkOutTime");
                 ArrayList<HotelRoom> hotelsRooms = new ArrayList<HotelRoom>();
 
-                ResultSet rs2 =query("SELECT * FROM hotelRooms WHERE hotelName = '" + hotelName + "'");
+                ResultSet rs2 = query("SELECT * FROM hotelRooms WHERE hotelName = '" + hotelName + "'");
                 while (rs2.next()) {
                     String dateAvailable = rs2.getString("date");
                     int roomNumber = rs2.getInt("roomNum");
                     int capacity = rs2.getInt("capacity");
                     int pricePerNight = rs2.getInt("pricePerNight");
-                    hotelsRooms.add(new HotelRoom(hotelName, dateAvailable, roomNumber, capacity, pricePerNight, refundable));
+                    ResultSet rs3 = query("SELECT * FROM booking WHERE hotelName = '" + hotelName + "' AND roomNumber = '" + roomNumber + "'");
+                    boolean booked = rs3.next();
+                    closeRS(rs3);
+                    hotelsRooms.add(new HotelRoom(hotelName, dateAvailable, roomNumber, capacity, pricePerNight, refundable, booked));
                 }
                 closeRS(rs2);
 
@@ -169,5 +173,32 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean makeBooking(Booking booking) {
+        String query = "INSERT INTO booking (hotelName, username, roomNumber, totalPrice, checkInDate, checkOutDate, capacity, location, isRefundable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        int isRefundable = booking.isRefundable() ? 1 : 0;
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, booking.getHotelName());
+            stmt.setString(2, booking.getUserName());
+            stmt.setInt(3, booking.getRoomNum());
+            stmt.setInt(4, booking.getTotalPrice());
+            stmt.setString(5, booking.getCheckInDate());
+            stmt.setString(6, booking.getCheckOutDate());
+            stmt.setInt(7, booking.getCapacity());
+            stmt.setString(8, booking.getLocation());
+            stmt.setInt(9, isRefundable);
+
+            int rowsInserted = stmt.executeUpdate();
+
+            if (rowsInserted > 0) {
+                System.out.println("Booking inserted successfully!");
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

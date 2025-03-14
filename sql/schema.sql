@@ -21,9 +21,14 @@ CREATE TABLE IF NOT EXISTS hotelRooms (
 );
 
 CREATE TABLE IF NOT EXISTS booking (
+    hotelName TEXT,
     username TEXT,
     roomNumber INTEGER,
-    hotelName TEXT,
-    date TEXT CHECK (date LIKE '____-__-__'),
-    FOREIGN KEY (hotelName, date, roomNumber) REFERENCES hotelRooms(hotelName, date, roomNum)
+    totalPrice INTEGER,
+    checkInDate TEXT CHECK (checkInDate LIKE '____-__-__'),
+    checkOutDate TEXT CHECK (checkOutDate LIKE '____-__-__'),
+    capacity INTEGER,
+    location TEXT,
+    isRefundable INTEGER CHECK (isRefundable IN (0,1)),
+    FOREIGN KEY (hotelName, checkInDate, roomNumber) REFERENCES hotelRooms(hotelName, date, roomNum)
 );

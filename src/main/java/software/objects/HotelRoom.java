@@ -10,14 +10,16 @@ public class HotelRoom {
     private final int capacity;
     private final int pricePerNight;
     private final boolean refundable;
+    private boolean booked;
 
-    public HotelRoom(String hotelName, String dateAvailable, int roomNumber, int capacity, int pricePerNight, boolean refundable) {
+    public HotelRoom(String hotelName, String dateAvailable, int roomNumber, int capacity, int pricePerNight, boolean refundable, boolean booked) {
         this.hotelName = hotelName;
         this.dateAvailable = dateAvailable;
         this.roomNumber = roomNumber;
         this.capacity = capacity;
         this.pricePerNight = pricePerNight;
         this.refundable = refundable;
+        this.booked = booked;
     }
 
     public boolean isAvailable(Search query) {
@@ -30,11 +32,16 @@ public class HotelRoom {
 
         boolean minPrice = query.getMinPrice() <= pricePerNight * daysBetween;
         boolean maxPrice = pricePerNight * daysBetween <= query.getMaxPrice();
-        return date && size && minPrice && maxPrice;
+        return date && size && minPrice && maxPrice && !booked;
     }
 
-    public void bookRoom(Search Query) {
-        //TODO
+    public Booking bookRoom(Search query, User user, Hotel hotel) {
+        LocalDate start = LocalDate.parse(query.getCheckInDate());
+        LocalDate end = LocalDate.parse(query.getCheckOutDate());
+        long dayDiff = ChronoUnit.DAYS.between(start, end);
+        int totalPrice = (int) dayDiff * pricePerNight;
+        booked = true;
+        return new Booking(this.hotelName, user.getUserName(), this.roomNumber, totalPrice, query.getCheckInDate(), query.getCheckOutDate(), capacity, hotel.getLocation(), refundable);
     }
 
     public String getHotelName() {

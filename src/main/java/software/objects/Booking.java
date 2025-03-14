@@ -23,10 +23,6 @@ public class Booking {
         this.refundable = refundable;
     }
 
-    public void processBooking() {
-        //TODO
-    }
-
     public String getHotelName() {
         return hotelName;
     }
