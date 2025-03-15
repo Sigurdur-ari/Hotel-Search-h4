@@ -18,7 +18,7 @@ INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
           ('Grand Ís', "2025-03-20", 1, 2, 31200),
           ('Grand Ís', "2025-03-20", 2, 2, 43124),
           ('Grand Ís', "2025-03-20", 3, 2, 5342),
-          ('Grand Ís', "2025-03-20", 4, 2, 100),
+          ('Grand Ís', "2025-03-21", 4, 2, 100),
           ('Hilton Ís', "2025-03-20", 1, 2, 31200),
           ('Hilton Ís', "2025-03-20", 2, 2, 43124),
           ('Hilton Ís', "2025-03-20", 3, 2, 5342),

@@ -26,7 +26,7 @@ public class RoomViewController {
         for (HotelRoom room : availableRooms) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/RoomItem.fxml"));
-                Parent hotelItem = loader.load();
+                Parent roomItem = loader.load();
 
                 // Get the controller for the item
                 RoomItemController controller = loader.getController();
@@ -34,7 +34,7 @@ public class RoomViewController {
                 controller.setRoomData(room, search);
 
                 // Add item to ListView
-                roomListView.getItems().add((HBox)hotelItem);
+                roomListView.getItems().add((HBox)roomItem);
 
             } catch (IOException e) {
                 System.err.println("Error loading FXML: " + e.getMessage());

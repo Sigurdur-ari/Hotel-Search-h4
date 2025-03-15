@@ -34,9 +34,6 @@ public class HotelItemController {
     public void handleSelection(javafx.scene.input.MouseEvent mouseEvent){
         ArrayList<HotelRoom> hotelRooms = hotel.getRooms();
 
-        System.out.println("Number of rooms in this hotel is " + hotelRooms.size());
-        System.out.println("the hotel looked at is  " + hotel);
-
         switchView(hotelRooms, search);
     }
 
