@@ -36,13 +36,11 @@ public class HotelViewController {
 
         filterBox.getChildren().add(priceSlider);
 
-        priceSlider.lowValueProperty().addListener((obs, oldVal, newVal) -> {
-            minPriceLab.setText(Integer.toString(newVal.intValue()));
+        priceSlider.setOnMouseReleased(event -> {
+            minPriceLab.setText(Integer.toString((int) priceSlider.getLowValue()));
+            maxPriceLab.setText(Integer.toString((int) priceSlider.getHighValue()));
         });
 
-        priceSlider.highValueProperty().addListener((obs, oldVal, newVal) -> {
-            maxPriceLab.setText(Integer.toString(newVal.intValue()));
-        });
     }
 
     public void setHotels(ArrayList<Hotel> availableHotels){
@@ -54,6 +52,7 @@ public class HotelViewController {
 
                 // Get the controller for the item
                 HotelItemController controller = loader.getController();
+                // Set the data for the hotel
                 controller.setHotelData(hotel, search);
 
                 // Add item to ListView

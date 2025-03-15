@@ -1,14 +1,20 @@
 package software.ui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import software.objects.Hotel;
+import software.objects.HotelRoom;
 import software.objects.Search;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 public class HotelItemController {
     @FXML public Label priceLabel;
@@ -22,7 +28,39 @@ public class HotelItemController {
     @FXML private Label petsAllowed;
     @FXML private Label refundable;
 
+    private Hotel hotel;
+    private Search search;
+    @FXML
+    public void handleSelection(javafx.scene.input.MouseEvent mouseEvent){
+        ArrayList<HotelRoom> hotelRooms = hotel.getRooms();
+
+        System.out.println("Number of rooms in this hotel is " + hotelRooms.size());
+        System.out.println("the hotel looked at is  " + hotel);
+
+        switchView(hotelRooms, search);
+    }
+
+    private void switchView(ArrayList<HotelRoom> rooms, Search search){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/RoomView.fxml"));
+            Parent root = loader.load();
+
+            RoomViewController roomViewController = loader.getController();
+            roomViewController.setSearch(search);
+            roomViewController.setRooms(rooms);
+            roomViewController.setTitle(hotel);
+
+            Stage stage = (Stage) priceLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void setHotelData(Hotel hotel, Search search) {
+        this.hotel = hotel;
+        this.search = search;
         hotelName.setText(hotel.getName());
         checkInTime.setText(hotel.getCheckInTime());
         checkOutTime.setText(hotel.getCheckOutTime());
