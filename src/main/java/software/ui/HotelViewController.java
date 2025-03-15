@@ -54,7 +54,7 @@ public class HotelViewController {
 
                 // Get the controller for the item
                 HotelItemController controller = loader.getController();
-                controller.setHotelData(hotel);
+                controller.setHotelData(hotel, search);
 
                 // Add item to ListView
                 hotelListView.getItems().add((HBox)hotelItem);

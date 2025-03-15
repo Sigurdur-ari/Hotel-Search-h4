@@ -58,8 +58,8 @@ public class SearchController {
             Parent root = loader.load();
 
             HotelViewController hotelViewController = loader.getController();
-            hotelViewController.setHotels(availableHotels);
             hotelViewController.setSearch(search);
+            hotelViewController.setHotels(availableHotels);
 
             Stage stage = (Stage) locationField.getScene().getWindow();
             stage.setScene(new Scene(root));
