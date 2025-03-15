@@ -30,6 +30,7 @@ public class HotelViewController {
     @FXML private ListView<HBox> hotelListView;
     private Search search;
 
+    //Setur upp double slidera
     public void initialize() {
         RangeSlider priceSlider = new RangeSlider(0, 100000, 0, 100000); //RangeSlider (min price:, max price:, initial range: n, m)
         priceSlider.setShowTickMarks(true);
@@ -70,6 +71,7 @@ public class HotelViewController {
 
     }
 
+    //tengir við hotelItem og fyllir listview.
     public void setHotels(ArrayList<Hotel> availableHotels){
         hotelListView.getItems().clear();
         for (Hotel hotel : availableHotels) {
@@ -94,6 +96,9 @@ public class HotelViewController {
     public void setSearch(Search search){
         this.search = search;
     }
+
+
+    //handlerar fyrir boolean filtera.
 
     public void handlePetsFilter(ActionEvent actionEvent) {
         search.updatePets(petsCheckbox.isSelected());

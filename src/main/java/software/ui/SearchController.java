@@ -23,6 +23,7 @@ public class SearchController {
     @FXML private DatePicker checkOutDateField;
     @FXML private ComboBox<Integer> guestSelector;
 
+    //Handler fyrir initial search, býr til glænýjann search hlut og leitar að hótelum sem passa.
     @FXML
     private void handleSearch() {
         String location = locationField.getText().trim();
@@ -40,18 +41,11 @@ public class SearchController {
 
             ArrayList<Hotel> availableHotels = search.initialSearch(location, formattedCheckIn, formattedCheckOut, guests);
 
-            System.out.println(availableHotels);
-
-            System.out.println("Initial search called with values: "
-                    + location + " "
-                    + formattedCheckIn + " "
-                    + formattedCheckOut + " "
-                    + guests);
-
             switchView(availableHotels, search);
         }
     }
 
+    //Skiptir yfir í hotelView og tengir við controller til að frumstilla.
     private void switchView(ArrayList<Hotel> availableHotels, Search search){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/HotelView.fxml"));
@@ -61,6 +55,7 @@ public class SearchController {
             hotelViewController.setSearch(search);
             hotelViewController.setHotels(availableHotels);
 
+            //random hlutur valinn til að fá window.
             Stage stage = (Stage) locationField.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

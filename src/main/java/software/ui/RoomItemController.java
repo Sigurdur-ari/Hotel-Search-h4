@@ -20,10 +20,11 @@ public class RoomItemController {
     private HotelRoom hRoom;
 
 
+    //setur data á roomItem hlut til að fylla listview.
     public void setRoomData(HotelRoom room, Search search){
         this.hRoom = room;
         roomNum.setText("Room number: " + room.getRoomNumber());
-        pricePerNight.setText("Price per night: " + room.getPricePerNight());
+        pricePerNight.setText("Price per night: " + String.format("%,d", room.getPricePerNight()) + " kr");
 
         LocalDate start = LocalDate.parse(search.getCheckInDate());
         LocalDate end = LocalDate.parse(search.getCheckOutDate());

@@ -30,23 +30,37 @@ public class HotelItemController {
 
     private Hotel hotel;
     private Search search;
+
+    //handler sem birtir valid herbergi frá hóteli sem ýtt var á.
     @FXML
     public void handleSelection(javafx.scene.input.MouseEvent mouseEvent){
         ArrayList<HotelRoom> hotelRooms = hotel.getRooms();
 
-        switchView(hotelRooms, search);
+        ArrayList<HotelRoom> availableRooms = new ArrayList<>();
+
+        //birtir aðeins þau herbergi sem passa við search hlutinn.
+        for (HotelRoom room : hotelRooms) {
+            if (room.isAvailable(search)) {
+                availableRooms.add(room);
+            }
+        }
+
+        switchView(availableRooms, search);
     }
 
+    //breytir view yfir í RoomView og setur upp herbergin sem á að birta þar.
     private void switchView(ArrayList<HotelRoom> rooms, Search search){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/RoomView.fxml"));
             Parent root = loader.load();
 
+            //tengja við roomViewController og kalla á setup aðferðir
             RoomViewController roomViewController = loader.getController();
             roomViewController.setSearch(search);
             roomViewController.setRooms(rooms);
             roomViewController.setTitle(hotel);
 
+            //random hlutur valinn til að fá window.
             Stage stage = (Stage) priceLabel.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -55,6 +69,7 @@ public class HotelItemController {
         }
     }
 
+    //aðferð sem setur data á hotelItem til að fylla inn í listview á hotelView.
     public void setHotelData(Hotel hotel, Search search) {
         this.hotel = hotel;
         this.search = search;

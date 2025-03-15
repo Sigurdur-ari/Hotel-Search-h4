@@ -1,0 +1,29 @@
+Almenn tenging í UI controllerum.
+
+Fyrsta view er SearchView, þegar ýtt er á "Search" er skipt yfir í HotelView sem er stjórnað af HotelViewController.
+Við skiptingu er kallað á setHotels hjá HotelViewController sem setur upp hótelin sem á að birta.
+
+setHotels býr til tengingu við HotelItemController sem notfærir sér HotelItem.fxml skránna til að setja gögn
+inn í listView sem á að birta.
+
+Þá er maður í HotelView skránni og getur filterað með functionality skilgreint þar. Hins vegar er það sem hlustar (e. listens)
+á það þegar ýtt er á hótel til að skoða herbergi er listner skilgreindur í HotelItemController.
+
+Sá listner heitir handleSelection og filterar út þau herbergi sem passa við search hlutinn og kallar á switchView.
+
+Switch view þar tengir við RoomViewController og kallar á setup aðferðir í honum sem virka eins og setup aðferðir í HotelView sem
+setja upp gögn með FXML skrám til að fylla inn í listView.
+
+Þá er búið að skipta yfir í RoomView.fxml sem er stjórnað af RoomViewController. Virknin þar er hins vegar lítil,
+þar sem bóka takkinn er skilgreindur í RoomItem hlutnum í listview þarf onAction á þann takka að vera skilgreint í
+RoomItemController eins og var gert með HotelViewið.
+
+Þetta er smá flókið en vonandi hjálpar þetta.
+
+SC -> HWC -> (setup á HIC) -> HIC -> RWC -> (setup á RIC) -> RIC -> meira functionality.
+
+SC - SearchController
+HWC - HotelViewController
+HIC - HotelItemController
+RWC - RoomViewController
+RIC - RoomItemController

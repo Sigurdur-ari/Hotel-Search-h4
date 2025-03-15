@@ -21,6 +21,7 @@ public class RoomViewController {
 
     private Search search;
 
+    //Tengir við roomItem og setur upp data til að fylla listview.
     public void setRooms(ArrayList<HotelRoom> availableRooms){
         roomListView.getItems().clear();
         for (HotelRoom room : availableRooms) {
@@ -47,6 +48,7 @@ public class RoomViewController {
         this.search = search;
     }
 
+    //Setur titilinn á fxml hlutnum.
     public void setTitle(Hotel hotel) {
         hotelRoomTitle.setText("Rooms available at " + hotel.getName());
     }
