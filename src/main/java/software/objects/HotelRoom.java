@@ -26,12 +26,13 @@ public class HotelRoom {
         boolean date = dateAvailable.equals(query.getCheckInDate());
         boolean size = capacity <= query.getPartySize();
 
-        LocalDate date1 = LocalDate.parse(dateAvailable);
-        LocalDate date2 = LocalDate.parse(query.getCheckOutDate());
-        long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+        // Er hér ef við viljum filtera eftir total price
+        //LocalDate date1 = LocalDate.parse(dateAvailable);
+        //LocalDate date2 = LocalDate.parse(query.getCheckOutDate());
+        //long daysBetween = ChronoUnit.DAYS.between(date1, date2);
 
-        boolean minPrice = query.getMinPrice() <= pricePerNight * daysBetween;
-        boolean maxPrice = pricePerNight * daysBetween <= query.getMaxPrice();
+        boolean minPrice = query.getMinPrice() <= pricePerNight;
+        boolean maxPrice = pricePerNight <= query.getMaxPrice();
         return date && size && minPrice && maxPrice && !booked;
     }
 

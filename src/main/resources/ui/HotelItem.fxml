@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.HotelItemController">
-    <ImageView fx:id="hotelImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true"/>
+<HBox prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.HotelItemController"
+      onMouseClicked="#handleSelection">
+    <ImageView fx:id="hotelImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" />
     <VBox spacing="8.0" HBox.hgrow="ALWAYS">
         <Label fx:id="hotelName" text="Hotel Name" wrapText="true">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
         </Label>
         <HBox spacing="5.0">
             <Label text="Check-in:" />
@@ -23,6 +29,23 @@
             <Label fx:id="checkOutTime" text="????" />
         </HBox>
     </VBox>
+   <VBox prefHeight="7.0" prefWidth="100.0">
+      <children>
+         <Label prefHeight="24.0" prefWidth="95.0" text="Price from:">
+            <font>
+               <Font name="System Bold" size="19.0" />
+            </font>
+            <padding>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+         </Label>
+         <Label fx:id="priceLabel" text="price?">
+            <padding>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+         </Label>
+      </children>
+   </VBox>
     <VBox alignment="CENTER" minWidth="100.0" spacing="5.0">
         <Label fx:id="hotelRating" text="????">
             <font>

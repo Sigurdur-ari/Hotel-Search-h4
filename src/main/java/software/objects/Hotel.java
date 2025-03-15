@@ -14,6 +14,7 @@ public class Hotel {
     private final String checkOutTime;
     private final String photoURL;
     private final ArrayList<HotelRoom> rooms;
+    private final int cheapestRoom;
 
     public Hotel(String name, String location, float rating, int ratingCount, boolean accessibility, boolean pets, boolean refundable, String checkInTime, String checkOutTime, String photoURL, ArrayList<HotelRoom> rooms) {
         this.name = name;
@@ -27,6 +28,17 @@ public class Hotel {
         this.checkOutTime = checkOutTime;
         this.photoURL = photoURL;
         this.rooms = rooms;
+        this.cheapestRoom = findCheapestRoom();
+    }
+
+    private int findCheapestRoom(){
+        int cheapest = Integer.MAX_VALUE;
+        for(HotelRoom room: rooms){
+            if(cheapest > room.getPricePerNight()){
+                cheapest = room.getPricePerNight();
+            }
+        }
+        return cheapest;
     }
 
     public boolean isAvailable(Search query) {
@@ -89,6 +101,10 @@ public class Hotel {
 
     public ArrayList<HotelRoom> getRooms() {
         return new ArrayList<>(rooms);
+    }
+
+    public int getCheapestRoom(){
+        return cheapestRoom;
     }
 
     @Override

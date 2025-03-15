@@ -23,16 +23,58 @@
             </Label>
             <HBox prefHeight="800.0" prefWidth="1000.0">
                <children>
-                  <VBox fx:id="filterBox" minWidth="150.0" prefHeight="730.0" prefWidth="200.0" spacing="10.0">
+                  <VBox minWidth="150.0" prefHeight="730.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="Pets Allowed" />
-                        <CheckBox mnemonicParsing="false" text="Accessible" />
-                        <CheckBox mnemonicParsing="false" text="Refundable" />
-                        <HBox alignment="CENTER" spacing="50.0">
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="148.0" text="Filtering">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <CheckBox mnemonicParsing="false" text="Pets Allowed" onAction="#handlePetsFilter" fx:id="petsCheckbox">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin></CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Accessible" onAction="#handleAccessibleFilter" fx:id="accessibleCheckbox">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin></CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Refundable" onAction="#handleRefundableFilter" fx:id="refundableCheckbox">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin></CheckBox>
+                        <Label text="Price per night">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="priceSliderBox">
                            <children>
-                              <Label fx:id="minPriceLab" />
-                              <Label fx:id="maxPriceLab" />
-                           </children></HBox>
+                              <HBox alignment="CENTER" spacing="50.0">
+                                 <children>
+                                    <Label fx:id="minPriceLab" />
+                                    <Label fx:id="maxPriceLab" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Label text="Rating">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="ratingSliderBox">
+                           <children>
+                              <HBox alignment="CENTER" spacing="50.0">
+                                 <children>
+                                    <Label fx:id="minRatingLab" />
+                                    <Label fx:id="maxRatingLab" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
