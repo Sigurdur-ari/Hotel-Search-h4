@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.HotelViewController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.ui.HotelViewController">
    <children>
       <VBox layoutX="-2.0" layoutY="3.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -30,15 +30,15 @@
                               <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
-                        <CheckBox mnemonicParsing="false" text="Pets Allowed" onAction="#handlePetsFilter" fx:id="petsCheckbox">
+                        <CheckBox fx:id="petsCheckbox" mnemonicParsing="false" onAction="#handlePetsFilter" text="Pets Allowed">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></CheckBox>
-                        <CheckBox mnemonicParsing="false" text="Accessible" onAction="#handleAccessibleFilter" fx:id="accessibleCheckbox">
+                        <CheckBox fx:id="accessibleCheckbox" mnemonicParsing="false" onAction="#handleAccessibleFilter" text="Accessible">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></CheckBox>
-                        <CheckBox mnemonicParsing="false" text="Refundable" onAction="#handleRefundableFilter" fx:id="refundableCheckbox">
+                        <CheckBox fx:id="refundableCheckbox" mnemonicParsing="false" onAction="#handleRefundableFilter" text="Refundable">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin></CheckBox>

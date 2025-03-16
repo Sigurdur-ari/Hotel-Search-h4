@@ -9,10 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Database {
     private static final String DATABASE_NAME = "sql/data.db";
@@ -200,5 +197,30 @@ public class Database {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public ArrayList<Booking> getAllBookings() {
+        try {
+            ResultSet rs = query("SELECT * FROM booking");
+            ArrayList<Booking> allBookings = new ArrayList<>();
+            while (rs.next()) {
+                String hotelName = rs.getString("hotelName");
+                String username = rs.getString("username");
+                int roomNumber = rs.getInt("roomNumber");
+                int totalPrice = rs.getInt("totalPrice");
+                String checkInDate = rs.getString("checkInDate");
+                String checkOutDate = rs.getString("checkOutDate");
+                int capacity = rs.getInt("capacity");
+                String location = rs.getString("location");
+                int isRefundable = rs.getInt("isRefundable");
+                Booking booking = new Booking(hotelName, username, roomNumber, totalPrice, checkInDate, checkOutDate, capacity, location, isRefundable == 1);
+                allBookings.add(booking);
+            }
+            closeRS(rs);
+            return allBookings;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

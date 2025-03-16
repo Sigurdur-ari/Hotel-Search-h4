@@ -57,6 +57,7 @@ public class HotelItemController {
             //tengja við roomViewController og kalla á setup aðferðir
             RoomViewController roomViewController = loader.getController();
             roomViewController.setSearch(search);
+            roomViewController.setHotel(hotel);
             roomViewController.setRooms(rooms);
             roomViewController.setTitle(hotel);
 

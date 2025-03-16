@@ -1,5 +1,6 @@
 package software.ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import software.Database;
+import software.objects.Booking;
 import software.objects.Hotel;
 import software.objects.Search;
 
@@ -41,12 +43,12 @@ public class SearchController {
 
             ArrayList<Hotel> availableHotels = search.initialSearch(location, formattedCheckIn, formattedCheckOut, guests);
 
-            switchView(availableHotels, search);
+            switchToHotelView(availableHotels, search);
         }
     }
 
     //Skiptir yfir í hotelView og tengir við controller til að frumstilla.
-    private void switchView(ArrayList<Hotel> availableHotels, Search search){
+    private void switchToHotelView(ArrayList<Hotel> availableHotels, Search search){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/HotelView.fxml"));
             Parent root = loader.load();
@@ -54,6 +56,29 @@ public class SearchController {
             HotelViewController hotelViewController = loader.getController();
             hotelViewController.setSearch(search);
             hotelViewController.setHotels(availableHotels);
+
+            //random hlutur valinn til að fá window.
+            Stage stage = (Stage) locationField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void handleViewBookings(ActionEvent actionEvent) {
+        Database db = new Database();
+        ArrayList<Booking> bookings = db.getAllBookings();
+        switchToBookingView(bookings);
+    }
+
+    private void switchToBookingView(ArrayList<Booking> bookings){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/BookingView.fxml"));
+            Parent root = loader.load();
+
+            BookingViewController bookingViewController = loader.getController();
+            bookingViewController.setBookings(bookings);
 
             //random hlutur valinn til að fá window.
             Stage stage = (Stage) locationField.getScene().getWindow();
