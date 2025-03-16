@@ -20,6 +20,7 @@ public class RoomViewController {
     public ListView<HBox> roomListView;
 
     private Search search;
+    private Hotel hotel;
 
     //Tengir við roomItem og setur upp data til að fylla listview.
     public void setRooms(ArrayList<HotelRoom> availableRooms){
@@ -32,7 +33,7 @@ public class RoomViewController {
                 // Get the controller for the item
                 RoomItemController controller = loader.getController();
                 // Set the data for the hotel room
-                controller.setRoomData(room, search);
+                controller.setRoomData(hotel, room, search);
 
                 // Add item to ListView
                 roomListView.getItems().add((HBox)roomItem);
@@ -46,6 +47,10 @@ public class RoomViewController {
 
     public void setSearch(Search search){
         this.search = search;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     //Setur titilinn á fxml hlutnum.

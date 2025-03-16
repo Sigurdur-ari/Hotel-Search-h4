@@ -28,8 +28,5 @@ INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
           ('Spara Ís', "2025-03-20", 3, 2, 1000000),
           ('Spara Ís', "2025-03-20", 4, 2, 10000);
 
---INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
---            VALUES('Test2', "2024-12-10", 1, 4, 12000);
---INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
---            VALUES('Test2', "2024-12-11", 2, 3, 7000);
-
+INSERT INTO booking (hotelName, username, roomNumber, totalPrice, checkInDate, checkOutDate, capacity, location, isRefundable)
+          VALUES('testingHotel', 'jon', 404, 1, '2025-03-20', '2025-03-21', 1, 'here', 0);
