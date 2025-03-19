@@ -1,11 +1,11 @@
 --Mock test insert data
 INSERT INTO hotels (name, location, rating, ratingCount,
                     accessibility, pets, refundable, photoURL, checkInTime, checkOutTime)
-            VALUES ('Grand Rey', 'Reykjavík', 8.9, 1000, TRUE, FALSE, FALSE, 'photos/hotel1.jpg', '16:30', '10:00'),
-            ('Grand Ak', 'Akureyri', 7.5, 200, TRUE, TRUE, FALSE, 'photos/hotel2.jpg', '15:30', '11:00'),
-            ('Grand Ís', 'Ísafjörður', 7.5, 200, TRUE, TRUE, FALSE, 'photos/hotel2.jpg', '15:30', '11:00'),
-            ('Hilton Ís', 'Ísafjörður', 6, 4000, TRUE, TRUE, FALSE, 'photos/hotel1.jpg', '15:00', '11:00'),
-            ('Spara Ís', 'Ísafjörður', 9.7, 20000, TRUE, TRUE, TRUE, 'photos/default.jpg', '14:00', '11:00');
+            VALUES ('Basalt Hotel', 'Borgarnes', 9.5, 1144, TRUE, FALSE, FALSE, 'photos/borgarnes.jpg', '15:00', '11:00'),
+            ('Aurora Hotel', 'Keflavík', 8.3, 14.299, TRUE, FALSE, TRUE, 'photos/keflavík.jpg', '14:00', '12:00'),
+            ('Hotel Katla', 'Vík', 7.5, 3443, TRUE, TRUE, FALSE, 'photos/vík.jpg', '15:30', '11:00'),
+            ('Sel - Hotel Mývatn', 'Mývatnssveit', 6.8, 8976, FALSE, TRUE, FALSE, 'photos/myvatn.jpg', '15:00', '12:00'),
+            ('Hotel Isafjordur', 'Ísafjörður', 8, 671, TRUE, TRUE, TRUE, 'photos/isafjordur.jpg', '14:00', '11:00');
 
 
 INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
