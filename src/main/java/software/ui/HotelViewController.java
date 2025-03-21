@@ -4,11 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.controlsfx.control.RangeSlider;
 import software.objects.Hotel;
 import software.objects.Search;
@@ -116,5 +118,18 @@ public class HotelViewController {
         search.updateRefundable(refundableCheckbox.isSelected());
         ArrayList<Hotel> availableHotels = search.searchAgain();
         setHotels(availableHotels);
+    }
+
+    public void handleBack() {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/SearchView.fxml"));
+            Parent root = loader.load();
+            //random hlutur valinn til að fá window.
+            Stage stage = (Stage) minPriceLab.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

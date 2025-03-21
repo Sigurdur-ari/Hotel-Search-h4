@@ -73,8 +73,11 @@ public class RoomItemController {
             System.out.println("creating new booking with: " + hotel.getName() + user.getUserName() + hotelRoom.getRoomNumber() + totalPrice + search.getCheckInDate() + search.getCheckOutDate() + hotelRoom.getCapacity() + hotel.getLocation() + hotelRoom.isRefundable());
             db.makeBooking(booking);
 
-            loader = new FXMLLoader(getClass().getResource("/ui/SearchView.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/ui/ConfirmationView.fxml"));
             root = loader.load();
+
+            ConfirmationController confirmationController = loader.getController();
+            confirmationController.setBooking(booking);
 
             //random hlutur valinn til að fá window.
             Stage stage = (Stage) bookButton.getScene().getWindow();
