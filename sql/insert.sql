@@ -1,7 +1,5 @@
---Mock test insert data
 INSERT INTO hotels (name, location, rating, ratingCount,
                     accessibility, pets, refundable, photoURL, checkInTime, checkOutTime)
-
             VALUES ('Basalt Hotel', 'Borgarnes', 9.5, 1144, TRUE, FALSE, FALSE, 'photos/borgarnes.jpg', '15:00', '11:00'),
             ('Hotel Hafnarfjall', 'Borgarnes', 8.2, 144, TRUE, FALSE, FALSE, 'photos/Hafnarfjall.jpg', '15:00', '11:00'),
             ('Hotel Hamar', 'Borgarnes', 8.8, 14299, TRUE, FALSE, TRUE, 'photos/hamar.jpg', '14:00', '12:00'),
@@ -10,9 +8,9 @@ INSERT INTO hotels (name, location, rating, ratingCount,
             ('Hotel Katla', 'Vík', 7.5, 13443, TRUE, TRUE, FALSE, 'photos/vík.jpg', '15:30', '11:00'),
             ('Hotel Vík í Mýrdal', 'Vík', 7.9, 3443, TRUE, TRUE, FALSE, 'photos/víkimýrdal.jpg', '13:30', '11:00'),
             ('Sel - Hotel Mývatn', 'Mývatnssveit', 6.8, 8976, FALSE, TRUE, FALSE, 'photos/myvatn.jpg', '15:00', '12:00'),
-            ('Fosshótel Mývatn', 'Mývatnssveit', 9.3, 676, FALSE, TRUE, FALSE, 'photos/fosshotelmyvatnt.jpg', '10:00', '12:00')
+            ('Fosshótel Mývatn', 'Mývatnssveit', 9.3, 676, FALSE, TRUE, FALSE, 'photos/fosshotelmyvatnt.jpg', '10:00', '12:00'),
             ('Mývatn - Berjaya Iceland Hotels', 'Mývatnssveit', 9.0, 6671, TRUE, FALSE, TRUE, 'photos/berjaya.jpg', '14:00', '11:00'),
-            ('Hotel Isafjordur-Torg', 'Ísafjörður', 8, 2600, TRUE, TRUE, TRUE, 'photos/isafjordur.jpg', '14:00', '11:00'),   
+            ('Hotel Isafjordur-Torg', 'Ísafjörður', 8, 2600, TRUE, TRUE, TRUE, 'photos/isafjordur.jpg', '14:00', '11:00'),
             ('Hotel Isafjordur-Höfn', 'Ísafjörður', 8, 9856, TRUE, TRUE, TRUE, 'photos/horn.jpg', '14:00', '11:00'),
             ('Hotel Mikligardur', 'Sauðárkrókur', 7.5, 2230, FALSE, FALSE, FALSE, 'photos/mikligardur.jpg', '15:00', '12:00'),
             ('Helluland Guesthouse', 'Sauðárkrókur', 9.2, 897, FALSE, TRUE, TRUE, 'photos/helluland.jpg', '14:30', '11:00'),
@@ -40,7 +38,7 @@ INSERT INTO hotels (name, location, rating, ratingCount,
             ('Berjaya Akureyri Hotel', 'Akureyri', 8.5, 600, TRUE, TRUE, TRUE, 'photos/berjayaak.jpg', '15:30', '11:00'),
             ('Hotel Norðurland', 'Akureyri', 7.8, 550, TRUE, FALSE, FALSE, 'photos/nordurlandak.jpg', '16:00', '10:00'),
             ('Centrum Hotel Akureyri', 'Akureyri', 7.9, 600, TRUE, FALSE, TRUE, 'photos/centrumak.jpg', '16:00', '10:30'),
-            ('Hotel Valaskjálf', 'Egilsstaðir', 8.2, 600, FALSE, TRUE, FALSE, 'photos/valaskjalf.jpg', '15:00', '11:00')
+            ('Hotel Valaskjálf', 'Egilsstaðir', 8.2, 600, FALSE, TRUE, FALSE, 'photos/valaskjalf.jpg', '15:00', '11:00'),
             ('Lake Hotel Egilsstaðir', 'Egilsstaðir', 9.0,1200, TRUE, TRUE, TRUE, 'photos/lakehotel.jpg', '15:30', '10:30'),
             ('Hótel Hallormsstaður', 'Egilsstaðir', 8.5, 900, TRUE, TRUE, TRUE, 'photos/hallormsstadur.jpg', '15:00', '10:00'),
             ('Eyvindará Guesthouse', 'Egilsstaðir', 8.0, 450, FALSE, TRUE, FALSE, 'photos/eyvindara.jpg', '15:30', '11:00'),
@@ -52,8 +50,8 @@ INSERT INTO hotels (name, location, rating, ratingCount,
             ('Guesthouse Selfoss', 'Selfoss', 7.9, 650, FALSE, TRUE, FALSE, 'photos/guesthouseselfoss.jpg', '16:00', '10:00'),
             ('Landhótel', 'Selfoss', 8.8, 1230, TRUE, FALSE, TRUE, 'photos/landhotel.jpg', '15:30', '10:30'),
             ('Hotel South Coast', 'Selfoss', 8.4, 890, TRUE, TRUE, TRUE, 'photos/hotelsouthcoast.jpg', '15:00', '10:00');
-        
-            
+
+
 
 INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
           VALUES('Basalt Hotel', "2025-05-10", 101, 1, 15000),
@@ -355,7 +353,7 @@ INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
           ('Eyvindará Guesthouse', "2025-05-17", 206, 4, 26000),
           ('Eyvindará Guesthouse', "2025-05-24", 307, 6, 29000),
           ('Hotel Edda Egilsstaðir', "2025-05-10", 501, 1, 15500),
-          ('Hotel Edda Egilsstaðir', "2025-05-17", 502, 1, 15500)
+          ('Hotel Edda Egilsstaðir', "2025-05-17", 502, 1, 15500),
           ('Hotel Edda Egilsstaðir', "2025-05-17", 402, 2, 18500),
           ('Hotel Edda Egilsstaðir', "2025-05-24", 303, 3, 21000),
           ('Hotel Edda Egilsstaðir', "2025-05-17", 204, 4, 25000),
@@ -368,7 +366,7 @@ INSERT INTO hotelRooms (hotelName, date, roomNum, capacity, pricePerNight)
           ('Hotel Vestmannaeyjar', "2025-05-10", 404, 4, 29000),
           ('Hotel Vestmannaeyjar', "2025-05-17", 105, 2, 20000),
           ('Hotel Vestmannaeyjar', "2025-05-24", 206, 5, 32000),
-          ('Hotel Vestmannaeyjar', "2025-05-17", 307, 6, 35000)
+          ('Hotel Vestmannaeyjar', "2025-05-17", 307, 6, 35000),
           ('Guesthouse Hamar', "2025-05-24", 101, 1, 14000),
           ('Guesthouse Hamar', "2025-05-10", 202, 2, 16000),
           ('Guesthouse Hamar', "2025-05-17", 303, 3, 19000),
