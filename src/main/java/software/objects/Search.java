@@ -82,6 +82,10 @@ public class Search {
         this.refundable = refundable;
     }
 
+    public ArrayList<Hotel> getAllHotels(){
+        return hotels;
+    }
+
     public String getLocation() {
         return location;
     }

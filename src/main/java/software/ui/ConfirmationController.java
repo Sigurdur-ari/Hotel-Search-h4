@@ -4,21 +4,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import software.objects.Booking;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class BookingViewController {
+public class ConfirmationController {
+   @FXML public HBox bookingContainer;
 
-    @FXML private ListView<HBox> bookingListView;
-
-    public void setBookings(ArrayList<Booking> Bookings){
-        bookingListView.getItems().clear();
-        for (Booking booking : Bookings) {
+    public void setBooking(Booking booking){
+        bookingContainer.getChildren().clear();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/BookingItem.fxml"));
                 Parent bookingItem = loader.load();
@@ -29,13 +25,12 @@ public class BookingViewController {
                 controller.setBookingData(booking);
 
                 // Add item to ListView
-                bookingListView.getItems().add((HBox)bookingItem);
+                bookingContainer.getChildren().add(bookingItem);
 
             } catch (IOException e) {
                 System.err.println("Error loading FXML: " + e.getMessage());
                 e.printStackTrace();  // Print the full stack trace for debugging
             }
-        }
     }
 
     public void handleBack() {
@@ -43,7 +38,7 @@ public class BookingViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/SearchView.fxml"));
             Parent root = loader.load();
             //random hlutur valinn til að fá window.
-            Stage stage = (Stage) bookingListView.getScene().getWindow();
+            Stage stage = (Stage) bookingContainer.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         }catch(Exception e){
