@@ -24,7 +24,7 @@ public class HotelRoom {
 
     public boolean isAvailable(Search query) {
         boolean date = dateAvailable.equals(query.getCheckInDate());
-        boolean size = capacity <= query.getPartySize();
+        boolean size = capacity >= query.getPartySize();
 
         // Er hér ef við viljum filtera eftir total price
         //LocalDate date1 = LocalDate.parse(dateAvailable);
