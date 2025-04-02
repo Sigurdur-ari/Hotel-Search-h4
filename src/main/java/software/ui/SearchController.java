@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import software.Database;
 import software.objects.Booking;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 
 public class SearchController {
 
-    @FXML private TextField locationField;
+    @FXML private ComboBox<String> locationField;
     @FXML private DatePicker checkInDateField;
     @FXML private DatePicker checkOutDateField;
     @FXML private ComboBox<Integer> guestSelector;
@@ -28,7 +27,7 @@ public class SearchController {
     //Handler fyrir initial search, býr til glænýjann search hlut og leitar að hótelum sem passa.
     @FXML
     private void handleSearch() {
-        String location = locationField.getText().trim();
+        String location = locationField.getValue();
         LocalDate checkInDate = checkInDateField.getValue();
         LocalDate checkOutDate = checkOutDateField.getValue();
         Integer guests = guestSelector.getValue();
