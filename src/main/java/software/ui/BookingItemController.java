@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import software.Database;
 import software.objects.Booking;
@@ -26,6 +28,20 @@ public class BookingItemController {
     @FXML private Label userName;
     @FXML private Label totalPrice;
     @FXML private Label refundable;
+
+    @FXML private HBox rootHBox;
+    @FXML private VBox hotelInfoBox;
+    @FXML private VBox roomInfoBox;
+    @FXML private VBox paymentInfoBox;
+    @FXML public VBox buttonBox;
+
+    public void initialize() {
+        // Bind VBox widths to a percentage of the HBox width
+        hotelInfoBox.prefWidthProperty().bind(rootHBox.widthProperty().multiply(0.29));  // 40% width
+        roomInfoBox.prefWidthProperty().bind(rootHBox.widthProperty().multiply(0.29));   // 30% width
+        paymentInfoBox.prefWidthProperty().bind(rootHBox.widthProperty().multiply(0.29)); // 30% width
+        buttonBox.prefWidthProperty().bind(rootHBox.widthProperty().multiply(0.13)); // 10% width
+    }
 
     public void setBookingData(Booking booking) {
         hotelName.setText(booking.getHotelName());
