@@ -30,7 +30,7 @@
                         <items>
                            <FXCollections fx:factory="observableArrayList">
                               <String fx:value="Akureyri" />
-                              <String fx:value="Borganes" />
+                              <String fx:value="Borgarnes" />
                               <String fx:value="Egilsstaðir" />
                               <String fx:value="Flúðir" />
                               <String fx:value="Grindavík" />

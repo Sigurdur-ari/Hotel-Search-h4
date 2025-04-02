@@ -34,11 +34,11 @@ public class HotelViewController {
 
     //Setur upp double slidera
     public void initialize() {
-        RangeSlider priceSlider = new RangeSlider(0, 100000, 0, 100000); //RangeSlider (min price:, max price:, initial range: n, m)
+        RangeSlider priceSlider = new RangeSlider(0, 50000, 0, 50000); //RangeSlider (min price:, max price:, initial range: n, m)
         priceSlider.setShowTickMarks(true);
         priceSlider.setShowTickLabels(true);
-        priceSlider.setMajorTickUnit(10000);
-        priceSlider.setBlockIncrement(5000);
+        priceSlider.setMajorTickUnit(5000);
+        priceSlider.setBlockIncrement(1000);
         priceSlider.setSnapToTicks(true);
 
         RangeSlider ratingSlider = new RangeSlider(0, 10, 0, 10); //RangeSlider (min rating:, max rating:, initial range: n, m)
@@ -52,25 +52,31 @@ public class HotelViewController {
         ratingSliderBox.getChildren().add(ratingSlider);
 
         //Double-headed slider for max and min price for filtering
-        priceSlider.setOnMouseReleased(event -> {
-            minPriceLab.setText(Integer.toString((int) priceSlider.getLowValue()));
-            maxPriceLab.setText(Integer.toString((int) priceSlider.getHighValue()));
-
-            search.updatePrice((int)priceSlider.getLowValue(), (int)priceSlider.getHighValue());
-            ArrayList<Hotel> availableHotels = search.searchAgain();
-            setHotels(availableHotels);
-        });
+        priceSlider.lowValueProperty().addListener((obs, oldVal, newVal) -> updatePriceFilter(priceSlider));
+        priceSlider.highValueProperty().addListener((obs, oldVal, newVal) -> updatePriceFilter(priceSlider));
 
         //Double-headed slider for max and min rating for filtering
-        ratingSlider.setOnMouseReleased(event -> {
-            minRatingLab.setText(Integer.toString((int) ratingSlider.getLowValue()));
-            maxRatingLab.setText(Integer.toString((int) ratingSlider.getHighValue()));
+        ratingSlider.lowValueProperty().addListener((obs, oldVal, newVal) -> updateRatingFilter(ratingSlider));
+        ratingSlider.highValueProperty().addListener((obs, oldVal, newVal) -> updateRatingFilter(ratingSlider));
 
-            search.updateRating((int)ratingSlider.getLowValue(), (int)ratingSlider.getHighValue());
-            ArrayList<Hotel> availableHotels = search.searchAgain();
-            setHotels(availableHotels);
-        });
+    }
 
+    private void updatePriceFilter(RangeSlider priceSlider) {
+        minPriceLab.setText(Integer.toString((int) priceSlider.getLowValue()));
+        maxPriceLab.setText(Integer.toString((int) priceSlider.getHighValue()));
+
+        search.updatePrice((int) priceSlider.getLowValue(), (int) priceSlider.getHighValue());
+        ArrayList<Hotel> availableHotels = search.searchAgain();
+        setHotels(availableHotels);
+    }
+
+    private void updateRatingFilter(RangeSlider ratingSlider) {
+        minRatingLab.setText(Integer.toString((int) ratingSlider.getLowValue()));
+        maxRatingLab.setText(Integer.toString((int) ratingSlider.getHighValue()));
+
+        search.updateRating((int) ratingSlider.getLowValue(), (int) ratingSlider.getHighValue());
+        ArrayList<Hotel> availableHotels = search.searchAgain();
+        setHotels(availableHotels);
     }
 
     //tengir við hotelItem og fyllir listview.

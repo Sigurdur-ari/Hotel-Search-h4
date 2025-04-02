@@ -223,4 +223,23 @@ public class Database {
             return null;
         }
     }
+
+    public boolean removeBooking(String hotelName, int roomNumber){
+        String query = "DELETE FROM booking WHERE hotelName = ? AND roomNumber = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, hotelName);
+            stmt.setInt(2, roomNumber);
+
+            int rowsDeleted = stmt.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Booking deleted successfully!");
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
