@@ -13,8 +13,8 @@ import java.util.*;
 
 public class Database {
     private static final String DATABASE_NAME = "sql/data.db";
-    private static final String SCHEMA_FILE = "sql/schema.sql";
-    private static final String INSERT_FILE = "sql/insert.sql";
+    private static final String SCHEMA_FILE = "schema.sql";
+    private static final String INSERT_FILE = "insert.sql";
     private Connection connection;
 
     public Database() {
@@ -92,13 +92,16 @@ public class Database {
     }
 
     private void executeSQLFile(String fileName) {
-        Path fileURL = Path.of(fileName);
+        String projectRoot = System.getProperty("user.dir");
+        Path fileURL = Paths.get(projectRoot, "sql", fileName);
         try {
             if (Files.exists(fileURL)) {
                 String sql = Files.readString(fileURL);
                 try (Statement stmt = connection.createStatement()) {
                     stmt.executeUpdate(sql);
                 }
+            } else {
+                System.out.println("File not found: " + fileURL);
             }
         } catch (IOException | SQLException e) {
             e.printStackTrace();
