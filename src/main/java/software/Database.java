@@ -4,15 +4,19 @@ import software.objects.Booking;
 import software.objects.Hotel;
 import software.objects.HotelRoom;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class Database {
-    private static final String DATABASE_NAME = "sql/data.db";
+    private static final String DATABASE_NAME = "data.db";
     private static final String SCHEMA_FILE = "schema.sql";
     private static final String INSERT_FILE = "insert.sql";
     private Connection connection;
@@ -72,19 +76,33 @@ public class Database {
 
     private void initializeDatabase() {
         try {
-            //Sækja root möppu verkefnis dynamically
-            String projectRoot = System.getProperty("user.dir");
-            // Búa til absolute path
-            Path dbPath = Paths.get(projectRoot, "sql", "data.db");
+            // Get the current working directory (project directory)
+            String currentDir = System.getProperty("user.dir");
 
-            if (!Files.exists(dbPath)) {
-                // Búa til data.db ef hún er ekki til
-                connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath.toString());
-                executeSQLFile(SCHEMA_FILE);
-                executeSQLFile(INSERT_FILE);
+            // Get the parent directory of the current working directory
+            File currentFile = new File(currentDir);
+            File parentDir = currentFile.getParentFile();
+
+            // Check if the parent directory exists
+            if (parentDir != null) {
+                String parentDirPath = parentDir.getAbsolutePath();
+                //System.out.println("Parent directory: " + parentDirPath);
+
+                // Now, build the path to Hotel-Search/sql/data.db relative to the parent directory
+                Path dbPath = Paths.get(parentDirPath, "Hotel-Search", "sql", DATABASE_NAME).toAbsolutePath();
+                System.out.println("Database file path: " + dbPath);
+
+                if (!Files.exists(dbPath)) {
+                    // create data.db if not exists
+                    connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+                    executeSQLFile(SCHEMA_FILE);
+                    executeSQLFile(INSERT_FILE);
+                } else {
+                    // if data.db exists then only connect
+                    connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+                }
             } else {
-                // Ef data.db er til þá bara tengjast
-                connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath.toString());
+                System.out.println("Parent directory not found!");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,16 +110,33 @@ public class Database {
     }
 
     private void executeSQLFile(String fileName) {
-        String projectRoot = System.getProperty("user.dir");
-        Path fileURL = Paths.get(projectRoot, "sql", fileName);
         try {
-            if (Files.exists(fileURL)) {
-                String sql = Files.readString(fileURL);
-                try (Statement stmt = connection.createStatement()) {
-                    stmt.executeUpdate(sql);
+            // Get the current working directory (project directory)
+            String currentDir = System.getProperty("user.dir");
+
+            // Get the parent directory of the current working directory
+            File currentFile = new File(currentDir);
+            File parentDir = currentFile.getParentFile();
+
+            // Check if the parent directory exists
+            if (parentDir != null) {
+                String parentDirPath = parentDir.getAbsolutePath();
+                //System.out.println("Parent directory: " + parentDirPath);
+
+                // Now, build the path to Hotel-Search/sql/data.db relative to the parent directory
+                Path fileURL = Paths.get(parentDirPath, "Hotel-Search", "sql", fileName).toAbsolutePath();
+                //System.out.println("SQL File path: " + fileURL);
+
+                if (Files.exists(fileURL)) {
+                    String sql = Files.readString(fileURL);
+                    try (Statement stmt = connection.createStatement()) {
+                        stmt.executeUpdate(sql);
+                    }
+                } else {
+                    System.out.println("File not found: " + fileURL);
                 }
             } else {
-                System.out.println("File not found: " + fileURL);
+                System.out.println("Parent directory not found!");
             }
         } catch (IOException | SQLException e) {
             e.printStackTrace();
