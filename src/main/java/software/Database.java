@@ -72,14 +72,19 @@ public class Database {
 
     private void initializeDatabase() {
         try {
-            if (!Files.exists(Paths.get(DATABASE_NAME))) {
-                connection = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
+            //Sækja root möppu verkefnis dynamically
+            String projectRoot = System.getProperty("user.dir");
+            // Búa til absolute path
+            Path dbPath = Paths.get(projectRoot, "sql", "data.db");
+
+            if (!Files.exists(dbPath)) {
+                // Búa til data.db ef hún er ekki til
+                connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath.toString());
                 executeSQLFile(SCHEMA_FILE);
                 executeSQLFile(INSERT_FILE);
-                //makeRooms(10);
-            }
-            else {
-                connection = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
+            } else {
+                // Ef data.db er til þá bara tengjast
+                connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath.toString());
             }
         } catch (SQLException e) {
             e.printStackTrace();
