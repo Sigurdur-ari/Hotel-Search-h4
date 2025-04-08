@@ -12,6 +12,7 @@ import software.objects.Hotel;
 import software.objects.HotelRoom;
 import software.objects.Search;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -99,8 +100,13 @@ public class HotelItemController {
 
         String photoURL = hotel.getPhotoURL();
         if (photoURL != null && !photoURL.isEmpty()) {
-            hotelImage.setImage(new Image(photoURL));
-        } else{
+            URL imageUrl = getClass().getResource("/" + photoURL);
+            if (imageUrl != null) {
+                hotelImage.setImage(new Image(imageUrl.toExternalForm()));
+            } else {
+                System.out.println("Image not found: " + photoURL);
+            }
+        } else {
             System.out.println("No image found");
         }
     }
